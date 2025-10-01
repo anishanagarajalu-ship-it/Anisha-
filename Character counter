@@ -1,0 +1,56 @@
+
+
+#include <stdio.h>
+#include <ctype.h>
+
+int main() {
+    char ch;
+    int characters = 0, words = 0, lines = 0;
+    int inWord = 0; // Flag to track if inside a word
+
+    printf("Enter text (Press Ctrl+D in Linux/Mac or Ctrl+Z in Windows to finish):\n");
+
+    while ((ch = getchar()) != EOF) {
+        characters++; // Count every character
+
+        if (ch == '\n')
+            lines++; // New line found
+
+        // Word detection: transition from non-space to space
+        if (isspace(ch)) {
+            inWord = 0; 
+        } else {
+            if (inWord == 0) { 
+                words++; // Start of a new word
+                inWord = 1;
+            }
+        }
+    }
+
+    printf("\n--- Count Results ---\n");
+    printf("Lines      : %d\n", lines);
+    printf("Words      : %d\n", words);
+    printf("Characters : %d\n", characters);
+
+    return 0;
+}
+
+
+---
+
+📌 Example Run
+
+Enter text (Press Ctrl+D in Linux/Mac or Ctrl+Z in Windows to finish):
+Hello World
+This is a test.
+
+--- Count Results ---
+Lines      : 2
+Words      : 5
+Characters : 24
+
+
+---
+
+👉 Do you want this program to read from a file (e.g., sample.txt) instead of typing text manually, or is stdin input fine for your use case?
+
