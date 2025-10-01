@@ -1,0 +1,57 @@
+#include <stdio.h>
+
+// Structure definition
+struct Student {
+    char name[50];
+    int rollNo;
+    int marks[5];   // Array to store marks in 5 subjects
+    int total;
+    float average;
+};
+
+int main() {
+    struct Student s;
+    int i;
+
+    // Input student details
+    printf("Enter student name: ");
+    scanf("%s", s.name);
+
+    printf("Enter roll number: ");
+    scanf("%d", &s.rollNo);
+
+    s.total = 0;
+
+    // Input marks
+    printf("Enter marks for 5 subjects:\n");
+    for(i = 0; i < 5; i++) {
+        printf("Subject %d: ", i+1);
+        scanf("%d", &s.marks[i]);
+        s.total += s.marks[i];
+    }
+
+    // Calculate average
+    s.average = s.total / 5.0;
+
+    // Output
+    printf("\n--- Student Marksheet ---\n");
+    printf("Name      : %s\n", s.name);
+    printf("Roll No   : %d\n", s.rollNo);
+    for(i = 0; i < 5; i++) {
+        printf("Subject %d : %d\n", i+1, s.marks[i]);
+    }
+    printf("Total     : %d\n", s.total);
+    printf("Average   : %.2f\n", s.average);
+
+    // Grade (optional)
+    if(s.average >= 90)
+        printf("Grade     : A\n");
+    else if(s.average >= 75)
+        printf("Grade     : B\n");
+    else if(s.average >= 50)
+        printf("Grade     : C\n");
+    else
+        printf("Grade     : Fail\n");
+
+    return 0;
+}
